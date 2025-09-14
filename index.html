@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EliteGovJobs - Premium Government Job Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2c3e50;
+            --secondary: #8e6c88;
+            --accent: #e6c200;
+            --light: #f8f9fa;
+            --dark: #1a1a2e;
+            --success: #28a745;
+            --gold-light: #f9f3e5;
+            --gold-dark: #b8860b;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f9f9f9 0%, #f1f1f1 100%);
+            color: #333;
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        header {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+            position: relative;
+            z-index: 10;
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 2.4rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 12px;
+            color: var(--accent);
+            font-size: 2.8rem;
+        }
+
+        .logo span {
+            color: var(--accent);
+            font-family: 'Playfair Display', serif;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2.2rem;
+            position: relative;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+            cursor: pointer;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent);
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .search-container {
+            width: 100%;
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.18);
+            border-radius: 50px;
+            padding: 0.6rem 1.8rem;
+            width: 100%;
+            max-width: 650px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .search-bar input {
+            background: transparent;
+            border: none;
+            color: white;
+            padding: 0.6rem;
+            width: 100%;
+            outline: none;
+            font-size: 1.1rem;
+        }
+
+        .search-bar input::placeholder {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .search-bar button {
+            background: transparent;
+            border: none;
+            color: var(--accent);
+            cursor: pointer;
+            font-size: 1.3rem;
+            transition: transform 0.3s;
+        }
+
+        .search-bar button:hover {
+            transform: scale(1.1);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            position: relative;
+            overflow: hidden;
+            background: url('https://images.unsplash.com/photo-1579546929662-711aa81148cf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') no-repeat center center;
+            background-size: cover;
+            color: white;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(44, 62, 80, 0.85), rgba(142, 108, 136, 0.85));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.2rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin: 0 auto 2.5rem;
+            max-width: 750px;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+            font-weight: 300;
+        }
+
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.2;
+            animation: float 8s infinite ease-in-out;
+            z-index: 1;
+        }
+
+        .floating-element:nth-child(1) {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(45deg, var(--accent), #ffeb3b);
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            width: 180px;
+            height: 180px;
+            background: linear-gradient(45deg, var(--secondary), #b19cd9);
+            bottom: 20%;
+            right: 10%;
+            animation-delay: 1s;
+        }
+
+        .floating-element:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(45deg, var(--primary), #3498db);
+            top: 40%;
+            right: 20%;
+            animation-delay: 2s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-25px) rotate(10deg);
+            }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2.5rem;
+        }
+
+        .section-title {
+            font-size: 2.6rem;
+            margin-bottom: 2.5rem;
+            text-align: center;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .jobs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .job-card {
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            position: relative;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .job-card:hover {
+            transform: translateY(-12px) rotateX(5deg);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .job-card-header {
+            padding: 1.8rem;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            position: relative;
+        }
+
+        .job-card-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .job-card-body {
+            padding: 1.8rem;
+        }
+
+        .job-info {
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .job-info i {
+            margin-right: 12px;
+            color: var(--secondary);
+            width: 22px;
+            font-size: 1.1rem;
+        }
+
+        .job-card-footer {
+            padding: 1.2rem 1.8rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--gold-light);
+        }
+
+        .apply-btn {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.8rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(44, 62, 80, 0.2);
+        }
+
+        .apply-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(44, 62, 80, 0.3);
+        }
+
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .post-card {
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            transform-style: preserve-3d;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .post-card:hover {
+            transform: translateY(-8px) rotateY(5deg);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .post-card-content {
+            padding: 1.8rem;
+        }
+
+        .post-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1.2rem;
+            color: var(--primary);
+        }
+
+        .post-card p {
+            color: #666;
+            margin-bottom: 1.8rem;
+            line-height: 1.7;
+        }
+
+        .read-more {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        .read-more i {
+            margin-left: 8px;
+            transition: transform 0.3s;
+        }
+
+        .read-more:hover {
+            color: var(--primary);
+        }
+
+        .read-more:hover i {
+            transform: translateX(6px);
+        }
+
+        footer {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 3.5rem 2rem;
+            text-align: center;
+            margin-top: 5rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-logo {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2.2rem;
+            margin-bottom: 2.2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1.2rem;
+            margin-bottom: 2.2rem;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.12);
+            color: white;
+            transition: all 0.3s;
+            font-size: 1.2rem;
+        }
+
+        .social-icons a:hover {
+            background: var(--accent);
+            color: var(--primary);
+            transform: translateY(-4px);
+        }
+
+        .copyright {
+            opacity: 0.9;
+            font-size: 0.95rem;
+            margin-top: 1.5rem;
+        }
+
+        .marquee {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 14px 0;
+            font-weight: 600;
+            margin-bottom: 2.5rem;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .marquee-content {
+            display: flex;
+            animation: marquee 25s linear infinite;
+            white-space: nowrap;
+        }
+
+        .marquee-content span {
+            padding: 0 2.5rem;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .quick-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            margin: 2.5rem 0;
+        }
+
+        .quick-link {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 1rem 1.8rem;
+            border-radius: 50px;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .quick-link:hover {
+            background: var(--accent);
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .link-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 18px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-content h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.9rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .modal-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+        }
+
+        .modal-btn {
+            padding: 0.8rem 1.8rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+        }
+
+        .btn-cancel {
+            background: #f1f1f1;
+            color: #333;
+        }
+
+        .btn-submit {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+        }
+
+        .modal-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 992px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul {
+                margin-top: 1.5rem;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            nav ul li {
+                margin: 0.8rem;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .jobs-grid, .posts-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-crown"></i>
+                Elite<span>Gov</span>Jobs
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Latest Jobs</a></li>
+                    <li><a href="#">Results</a></li>
+                    <li><a href="#">Admit Card</a></li>
+                    <li><a href="#">Answer Key</a></li>
+                    <li><a href="#">Syllabus</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="search-container">
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Search for jobs, exams, results...">
+                    <button id="searchButton"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="marquee">
+        <div class="marquee-content">
+            <span>IBPS RRB 2025 Notification Released - 13217 Vacancies</span>
+            <span>Bihar STET 2025 Online Application Started</span>
+            <span>RBI Grade B 2025 Recruitment - 120 Posts</span>
+            <span>UPSC 2025 Notification Coming Soon</span>
+            <span>SSC CGL 2025 Application Date Extended</span>
+        </div>
+    </div>
+
+    <div class="hero">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="hero-content">
+            <h1>Premium Government Job Portal</h1>
+            <p>Discover elite career opportunities with the most comprehensive government job resource</p>
+            <div class="quick-links">
+                <a href="#" class="quick-link">Latest Jobs</a>
+                <a href="#" class="quick-link">Admit Card</a>
+                <a href="#" class="quick-link">Results</a>
+                <a href="#" class="quick-link">Answer Key</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 class="section-title">Premium Job Opportunities</h2>
+        <div class="jobs-grid">
+            <div class="job-card">
+                <div class="job-card-header">
+                    <h3>IBPS RRB Vacancy 2025</h3>
+                    <p>CRP RRBs XIV</p>
+                </div>
+                <div class="job-card-body">
+                    <div class="job-info">
+                        <i class="fas fa-briefcase"></i>
+                        <span>13217 Posts</span>
+                    </div>
+                    <div class="job-info">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Graduation Required</span>
+                    </div>
+                    <div class="job-info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>All India</span>
+                    </div>
+                    <div class="job-info">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Last Date: 15 Aug 2025</span>
+                    </div>
+                </div>
+                <div class="job-card-footer">
+                    <div class="salary">₹35,000 - ₹40,000</div>
+                    <a href="#" class="apply-btn" data-job="IBPS RRB Vacancy 2025">Apply Now</a>
+                </div>
+            </div>
+
+            <div class="job-card">
+                <div class="job-card-header">
+                    <h3>Bihar STET 2025</h3>
+                    <p>Secondary Teacher Eligibility Test</p>
+                </div>
+                <div class="job-card-body">
+                    <div class="job-info">
+                        <i class="fas fa-briefcase"></i>
+                        <span>Multiple Posts</span>
+                    </div>
+                    <div class="job-info">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>B.Ed Required</span>
+                    </div>
+                    <div class="job-info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Bihar</span>
+                    </div>
+                    <div class="job-info">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Last Date: 20 Jul 2025</span>
+                    </div>
+                </div>
+                <div class="job-card-footer">
+                    <div class="salary">₹40,000 - ₹45,000</div>
+                    <a href="#" class="apply-btn" data-job="Bihar STET 2025">Apply Now</a>
+                </div>
+            </div>
+
+            <div class="job-card">
+                <div class="job-card-header">
+                    <h3>RBI Grade B Vacancy 2025</h3>
+                    <p>Officer Posts</p>
+                </div>
+                <div class="job-card-body">
+                    <div class="job-info">
+                        <i class="fas fa-briefcase"></i>
+                        <span>120 Posts</span>
+                    </div>
+                    <div class="job-info">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Graduation Required</span>
+                    </div>
+                    <div class="job-info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Multiple Locations</span>
+                    </div>
+                    <div class="job-info">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Last Date: 10 Sep 2025</span>
+                    </div>
+                </div>
+                <div class="job-card-footer">
+                    <div class="salary">₹55,000 - ₹60,000</div>
+                    <a href="#" class="apply-btn" data-job="RBI Grade B Vacancy 2025">Apply Now</a>
+                </div>
+            </div>
+
+            <div class="job-card">
+                <div class="job-card-header">
+                    <h3>DSSSB Primary Teacher Vacancy 2025</h3>
+                    <p>Delhi Subordinate Services Selection Board</p>
+                </div>
+                <div class="job-card-body">
+                    <div class="job-info">
+                        <i class="fas fa-briefcase"></i>
+                        <span>2500 Posts</span>
+                    </div>
+                    <div class="job-info">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>B.Ed Required</span>
+                    </div>
+                    <div class="job-info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Delhi</span>
+                    </div>
+                    <div class="job-info">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Last Date: 05 Sep 2025</span>
+                    </div>
+                </div>
+                <div class="job-card-footer">
+                    <div class="salary">₹42,000 - ₹47,000</div>
+                    <a href="#" class="apply-btn" data-job="DSSSB Primary Teacher Vacancy 2025">Apply Now</a>
+                </div>
+            </div>
+
+            <div class="job-card">
+                <div class="job-card-header">
+                    <h3>BSSC CGL 4 Vacancy 2025</h3>
+                    <p>Bihar Staff Selection Commission</p>
+                </div>
+                <div class="job-card-body">
+                    <div class="job-info">
+                        <i class="fas fa-briefcase"></i>
+                        <span>1481 Posts</span>
+                    </div>
+                    <div class="job-info">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Graduation Required</span>
+                    </div>
+                    <div class="job-info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Bihar</span>
+                    </div>
+                    <div class="job-info">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Last Date: 30 Aug 2025</span>
+                    </div>
+                </div>
+                <div class="job-card-footer">
+                    <div class="salary">₹38,000 - ₹43,000</div>
+                    <a href="#" class="apply-btn" data-job="BSSC CGL 4 Vacancy 2025">Apply Now</a>
+                </div>
+            </div>
+
+            <div class="job-card">
+                <div class="job-card-header">
+                    <h3>BPSC AEDO Vacancy 2025</h3>
+                    <p>Bihar Public Service Commission</p>
+                </div>
+                <div class="job-card-body">
+                    <div class="job-info">
+                        <i class="fas fa-briefcase"></i>
+                        <span>935 Posts</span>
+                    </div>
+                    <div class="job-info">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Graduation Required</span>
+                    </div>
+                    <div class="job-info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Bihar</span>
+                    </div>
+                    <div class="job-info">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Last Date: 25 Jul 2025</span>
+                    </div>
+                </div>
+                <div class="job-card-footer">
+                    <div class="salary">₹45,000 - ₹50,000</div>
+                    <a href="#" class="apply-btn" data-job="BPSC AEDO Vacancy 2025">Apply Now</a>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title">Latest Updates</h2>
+        <div class="posts-grid">
+            <div class="post-card">
+                <div class="post-card-content">
+                    <h3>Graduation Pass 50000 Form Final Submit Process</h3>
+                    <p>Complete guide on how to submit your graduation form for the 50000 scholarship scheme. Step-by-step instructions with screenshots.</p>
+                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="post-card">
+                <div class="post-card-content">
+                    <h3>RRB Group D Admit Card 2025</h3>
+                    <p>Railway Recruitment Board will soon release the admit cards for Group D posts. Check how to download and important instructions.</p>
+                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="post-card">
+                <div class="post-card-content">
+                    <h3>E-Shram Card Pension Yojana 2025</h3>
+                    <p>All details about the new pension scheme for workers registered under the E-Shram portal. Eligibility and application process.</p>
+                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                EliteGovJobs
+            </div>
+            <div class="footer-links">
+                <a href="#">Home</a>
+                <a href="#">Latest Jobs</a>
+                <a href="#">Results</a>
+                <a href="#">Admit Card</a>
+                <a href="#">Answer Key</a>
+                <a href="#">Contact Us</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <div class="copyright">© 2025 EliteGovJobs. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <div class="link-modal" id="linkModal">
+        <div class="modal-content">
+            <h3>Add Application Link</h3>
+            <div class="form-group">
+                <label for="jobTitle">Job Title</label>
+                <input type="text" id="jobTitle" readonly>
+            </div>
+            <div class="form-group">
+                <label for="applicationLink">Application Link</label>
+                <input type="url" id="applicationLink" placeholder="https://example.com/apply">
+            </div>
+            <div class="modal-buttons">
+                <button class="modal-btn btn-cancel" id="cancelBtn">Cancel</button>
+                <button class="modal-btn btn-submit" id="submitBtn">Save Link</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Search functionality
+        document.getElementById('searchButton').addEventListener('click', function() {
+            performSearch();
+        });
+
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        function performSearch() {
+            const searchTerm = document.getElementById('searchInput').value.trim().toLowerCase();
+            if (searchTerm === '') {
+                alert('Please enter a search term');
+                return;
+            }
+            
+            // In a real application, this would search through a database
+            // For this demo, we'll just show an alert with the search term
+            alert('Searching for: ' + searchTerm + '\nIn a real application, this would show search results.');
+            
+            // You could also filter job cards based on the search term
+            const jobCards = document.querySelectorAll('.job-card');
+            jobCards.forEach(card => {
+                const jobTitle = card.querySelector('.job-card-header h3').textContent.toLowerCase();
+                if (jobTitle.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Add 3D effect to job cards on mouse move
+        document.querySelectorAll('.job-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const x = e.clientX;
+                const y = e.clientY;
+                const rect = card.getBoundingClientRect();
+                const localX = x - rect.left;
+                const localY = y - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateY = (localX - centerX) / 25;
+                const rotateX = (centerY - localY) / 25;
+                
+                card.style.transform = `translateY(-12px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) rotateX(0) rotateY(0)';
+                setTimeout(() => {
+                    card.style.transform = '';
+                }, 500);
+            });
+        });
+
+        // Make the marquee animation continuous
+        const marqueeContent = document.querySelector('.marquee-content');
+        const marqueeItems = marqueeContent.innerHTML;
+        marqueeContent.innerHTML = marqueeItems + marqueeItems;
+
+        // Link management functionality
+        const applyButtons = document.querySelectorAll('.apply-btn');
+        const linkModal = document.getElementById('linkModal');
+        const jobTitleInput = document.getElementById('jobTitle');
+        const applicationLinkInput = document.getElementById('applicationLink');
+        const cancelBtn = document.getElementById('cancelBtn');
+        const submitBtn = document.getElementById('submitBtn');
+        
+        let currentButton = null;
+        
+        applyButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                currentButton = this;
+                const jobTitle = this.getAttribute('data-job');
+                jobTitleInput.value = jobTitle;
+                
+                // Check if we already have a link for this job
+                const savedLink = localStorage.getItem(`jobLink-${jobTitle}`);
+                if (savedLink) {
+                    // If we have a saved link, open it directly
+                    window.open(savedLink, '_blank');
+                } else {
+                    // Otherwise, show the modal to add a link
+                    linkModal.style.display = 'flex';
+                    applicationLinkInput.value = '';
+                }
+            });
+        });
+        
+        cancelBtn.addEventListener('click', function() {
+            linkModal.style.display = 'none';
+        });
+        
+        submitBtn.addEventListener('click', function() {
+            const link = applicationLinkInput.value.trim();
+            const jobTitle = jobTitleInput.value;
+            
+            if (link) {
+                // Save the link to localStorage
+                localStorage.setItem(`jobLink-${jobTitle}`, link);
+                
+                // Update the button to open the link directly next time
+                currentButton.setAttribute('data-link', link);
+                
+                // Open the link in a new tab
+                window.open(link, '_blank');
+                
+                // Close the modal
+                linkModal.style.display = 'none';
+            } else {
+                alert('Please enter a valid URL');
+            }
+        });
+        
+        // Close modal if clicked outside
+        window.addEventListener('click', function(e) {
+            if (e.target === linkModal) {
+                linkModal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
