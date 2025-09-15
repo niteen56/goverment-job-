@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EliteGovJobs - Exam Results</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #1c1c1c);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      color: #f8f9fa;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    /* NAVBAR */
+    nav {
+      background: linear-gradient(to right, #111, #222);
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 12px;
+      margin-bottom: 25px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-container img {
+      height: 32px;
+      width: 32px;
+    }
+
+    .logo-text {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    .logo-text span {
+      color: #ffd700;
+    }
+
+    nav a {
+      color: #f1f1f1;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: 500;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      background: #ffd700;
+      bottom: -4px;
+      left: 0;
+      transition: 0.4s ease-in-out;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    nav a:hover {
+      color: #ffd700;
+      text-shadow: 0 0 8px rgba(255, 215, 0, 0.7);
+    }
+
+    nav a:active {
+      transform: scale(0.95);
+    }
+
+    header {
+      text-align: center;
+      padding: 50px 20px;
+      background: linear-gradient(120deg, #000000, #2b2b2b, #ffd700);
+      border-radius: 20px;
+      margin-bottom: 40px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.7);
+      color: #ffd700;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,215,0,0.2) 0%, transparent 70%);
+      animation: rotateShine 20s linear infinite;
+    }
+
+    @keyframes rotateShine {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 2;
+      text-shadow: 0 0 15px rgba(255,215,0,0.8);
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      color: #f1f1f1;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Search Bar */
+    .search-container {
+      max-width: 600px;
+      margin: 30px auto;
+      position: relative;
+    }
+
+    .search-box {
+      width: 100%;
+      padding: 16px 20px;
+      border-radius: 50px;
+      border: 2px solid #ffd700;
+      font-size: 1rem;
+      background: #101010;
+      color: #ffd700;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.5), inset 0 0 15px rgba(255,215,0,0.1);
+      padding-left: 55px;
+      transition: 0.3s;
+    }
+
+    .search-box:focus {
+      outline: none;
+      box-shadow: 0 8px 30px rgba(255,215,0,0.4), inset 0 0 20px rgba(255,215,0,0.2);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #ffd700;
+      font-size: 1.3rem;
+    }
+
+    /* Result Cards */
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      perspective: 1200px;
+    }
+
+    .card {
+      background: linear-gradient(145deg, #1c1c1c, #2a2a2a);
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      padding: 25px;
+      border-radius: 18px;
+      box-shadow: 0 12px 25px rgba(0,0,0,0.6);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transform-style: preserve-3d;
+    }
+
+    .card:hover {
+      transform: rotateY(10deg) rotateX(6deg) scale(1.05);
+      box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3);
+    }
+
+    .card h2 {
+      color: #ffd700;
+      font-size: 1.4rem;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      color: #ccc;
+      margin-bottom: 15px;
+    }
+
+    .view-btn {
+      display: inline-block;
+      padding: 10px 18px;
+      background: linear-gradient(120deg, #ffd700, #ffb400);
+      color: #1b1b1b;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .view-btn:hover {
+      background: linear-gradient(120deg, #ffb400, #ffd700);
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(255,215,0,0.3);
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 30px;
+      display: none;
+      color: #ffb400;
+      font-size: 1.3rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🌐 NAVBAR -->
+  <nav>
+    
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <i class="fas fa-crown"></i> EliteGovJobs 
+      
+      <div class="logo-text">Elite<span>Gov</span>Jobs</div>
+    </div>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="Latest-job.html">Latest jobs</a>
+      <a href="admit-card.html">Admit Card</a>
+      <a href="answer-key.html">Answer key</a>
+      <a href="result.html">Result</a>
+      <a href="scholarship.html">Scholarship</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <!-- 🌟 HEADER -->
+  <header>
+    <h1>✨ Exam Results Portal ✨</h1>
+    <p class="subtitle">Your result may be a number, but your potential is infinite </p>
+  </header>
+
+  <!-- 🔍 SEARCH -->
+  <div class="search-container">
+    <i class="fas fa-search search-icon"></i>
+    <input type="text" id="searchInput" class="search-box" placeholder="Search results...">
+  </div>
+
+  <!-- 📋 RESULT CARDS -->
+  <div class="card-container" id="cardContainer">
+    <div class="card" data-search="ssc cgl 2025 result staff selection commission">
+      <h2>SSC CGL 2025 Result</h2>
+      <p>Staff Selection Commission</p>
+      <a href="#" class="view-btn">View Result</a>
+    </div>
+    <div class="card" data-search="railway rrb ntpc 2025 result indian railways">
+      <h2>RRB NTPC 2025 Result</h2>
+      <p>Indian Railways</p>
+      <a href="#" class="view-btn">View Result</a>
+    </div>
+    <div class="card" data-search="ibps po 2025 result banking institute">
+      <h2>IBPS PO 2025 Result</h2>
+      <p>Institute of Banking Personnel Selection</p>
+      <a href="#" class="view-btn">View Result</a>
+    </div>
+    <div class="card" data-search="upsc civil services 2025 result union public service commission">
+      <h2>UPSC Civil Services 2025 Result</h2>
+      <p>Union Public Service Commission</p>
+      <a href="#" class="view-btn">View Result</a>
+    </div>
+  </div>
+
+  <!-- ❌ No Results -->
+  <div class="no-results" id="noResults">
+    <i class="fas fa-times-circle"></i> No Results Found
+  </div>
+
+  <!-- 📜 Script -->
+  <script>
+    const searchInput = document.getElementById("searchInput");
+    const cards = document.querySelectorAll(".card");
+    const noResults = document.getElementById("noResults");
+
+    searchInput.addEventListener("input", function() {
+      const searchValue = this.value.toLowerCase();
+      let found = false;
+
+      cards.forEach(card => {
+        if (card.dataset.search.includes(searchValue)) {
+          card.style.display = "block";
+          found = true;
+        } else {
+          card.style.display = "none";
+        }
+      });
+
+      noResults.style.display = found ? "none" : "block";
+    });
+  </script>
+</body>
+</html>

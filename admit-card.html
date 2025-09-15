@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admit Card | EliteGovJobs</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0f0f0f, #1c1c1c, #2a2a2a);
+      color: #E0E0E0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header */
+    header {
+      background: rgba(0,0,0,0.85);
+      padding: 18px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255,215,0,0.4);
+      backdrop-filter: blur(8px);
+    }
+    header h1 { 
+      font-size: 24px; 
+      font-weight: bold; 
+      color: #FFD700; 
+      letter-spacing: 1px;
+    }
+
+    nav a {
+      color: #C0C0C0;
+      text-decoration: none;
+      margin-right: 20px;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    nav a:hover { color: #FFD700; }
+    nav a.active { color: #FFD700; font-weight: 600; }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 70px 20px 40px;
+    }
+    .hero h2 {
+      font-size: 38px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      background: linear-gradient(90deg, #FFD700, #E6C200);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      font-size: 18px;
+      opacity: 0.85;
+      color: #C0C0C0;
+      margin-bottom: 25px;
+    }
+
+    /* Search Bar */
+    .search-bar {
+      max-width: 500px;
+      margin: 0 auto;
+      display: flex;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,215,0,0.3);
+      border-radius: 30px;
+      overflow: hidden;
+      backdrop-filter: blur(6px);
+    }
+    .search-bar input {
+      flex: 1;
+      padding: 12px 16px;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: #fff;
+      font-size: 15px;
+    }
+    .search-bar button {
+      background: linear-gradient(90deg, #FFD700, #E6C200);
+      border: none;
+      padding: 12px 20px;
+      cursor: pointer;
+      font-weight: bold;
+      color: #000;
+      transition: 0.3s;
+    }
+    .search-bar button:hover {
+      background: linear-gradient(90deg, #E6C200, #FFD700);
+    }
+
+    /* Container */
+    .container {
+      flex: 1;
+      padding: 40px 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,215,0,0.2);
+      color: #fff;
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+      transition: transform 0.3s, box-shadow 0.3s;
+      backdrop-filter: blur(6px);
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 28px rgba(255,215,0,0.3);
+      border-color: #FFD700;
+    }
+    .card h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #FFD700;
+    }
+    .card p {
+      font-size: 15px;
+      color: #C0C0C0;
+      margin-bottom: 14px;
+    }
+    .card a {
+      display: inline-block;
+      padding: 10px 18px;
+      background: linear-gradient(90deg, #FFD700, #E6C200);
+      color: #000;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+    .card a:hover {
+      background: linear-gradient(90deg, #E6C200, #FFD700);
+      color: #000;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 16px;
+      background: rgba(0,0,0,0.9);
+      font-size: 14px;
+      border-top: 1px solid rgba(255,215,0,0.3);
+      color: #C0C0C0;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>EliteGovJobs</h1>
+    
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="Latest-job.html">Latest Jobs</a>
+      <a href="result.html">Results</a>
+      <a href="admit-card.html" class="active">Admit Card</a>
+      <a href="scholarship.html">scholarship</a>
+      <a href="answer-key.html">answer-key</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Download Admit Cards</h2>
+    <p>Access all government exam admit cards in one premium portal</p>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search Admit Card...">
+      <button type="button" onclick="searchCards()">Search</button>
+    </div>
+  </section>
+
+  <section class="container" id="cardContainer">
+    <div class="card">
+      <h3>SSC CGL 2025 Admit Card</h3>
+      <p>Staff Selection Commission Combined Graduate Level Exam 2025</p>
+      <a href="#">Download</a>
+    </div>
+
+    <div class="card">
+      <h3>UPSC 2025 Admit Card</h3>
+      <p>Union Public Service Commission Exam 2025</p>
+      <a href="#">Download</a>
+    </div>
+
+    <div class="card">
+      <h3>IBPS RRB 2025 Admit Card</h3>
+      <p>Institute of Banking Personnel Selection RRB Exam 2025</p>
+      <a href="#">Download</a>
+    </div>
+
+    <div class="card">
+      <h3>Railway NTPC Admit Card</h3>
+      <p>Railway Recruitment Board NTPC Examination</p>
+      <a href="#">Download</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 EliteGovJobs | All Rights Reserved</p>
+  </footer>
+
+  <script>
+    function searchCards() {
+      let input = document.getElementById("searchInput").value.toLowerCase();
+      let cards = document.querySelectorAll(".card");
+
+      cards.forEach(card => {
+        let text = card.innerText.toLowerCase();
+        if (text.includes(input)) {
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    }
+
+    // Live search while typing
+    document.getElementById("searchInput").addEventListener("keyup", searchCards);
+  </script>
+
+</body>
+</html>
