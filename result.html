@@ -231,60 +231,11 @@
       font-size: 1.3rem;
       font-weight: bold;
     }
-/* Results Page Mobile Fix */
-@media screen and (max-width: 768px) {
-    /* Main container fix */
-    .container {
-        width: 100% !important;
-        max-width: 100% !important;
-        padding: 5px !important;
-        margin: 0 !important;
-        overflow-x: auto !important;
-    }
-    
-    /* Table wrapper for scrolling */
-    .table-wrapper {
-        width: 100% !important;
-        overflow-x: auto !important;
-        -webkit-overflow-scrolling: touch !important;
-    }
-    
-    /* Table specific fixes */
-    table {
-        width: auto !important;
-        min-width: 100% !important;
-        font-size: 12px !important;
-        display: table !important;
-    }
-    
-    /* Table cells */
-    td, th {
-        padding: 6px 3px !important;
-        font-size: 12px !important;
-        white-space: nowrap !important;
-        border: 1px solid #ddd !important;
-    }
-    
-    /* Make links touch-friendly */
-    a {
-        padding: 5px !important;
-        display: inline-block !important;
-    }
-    
-    /* Header and title fixes */
-    h1, h2, h3 {
-        font-size: 16px !important;
-        word-wrap: break-word !important;
-    }
-    
-    /* Ensure horizontal scrolling */
-    body {
-        overflow-x: hidden !important;
-    }
-    
-    html {
-        overflow-x: hidden !important;
-    }
+@media (max-width: 768px) {
+    body { overflow-x: hidden; }
+    .container { width: 100%; padding: 5px; overflow-x: auto; }
+    table { min-width: 800px; font-size: 12px; }
+    td, th { padding: 5px; font-size: 12px; }
 }
   </style>
 </head>
@@ -375,5 +326,6 @@
   </script>
 </body>
 </html>
+
 
 
